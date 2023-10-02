@@ -18,7 +18,7 @@ spec:
         persistentVolumeClaim:
           claimName: grafana-data
       containers:
-        - image: grafana/grafana-enterprise:10.1
+        - image: grafana/grafana-enterprise:10.1.4
           name: grafana
           ports:
           - containerPort: 8086
@@ -29,13 +29,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: influxdb
+  name: grafana
 spec:
   ports:
-  - port: 8086
-    targetPort: 8086
+  - port: 3000
+    targetPort: 3000
   selector:
-    app: influxdb
+    app: grafana
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
