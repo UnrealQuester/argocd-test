@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: influxdb
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: influxdb
+  template:
+    metadata:
+      labels:
+        app: influxdb
+    spec:
+      containers:
+        - image: influxdb:2.7.1
+          name: influxdb
+          ports:
+          - containerPort: 8086
+          volumeMounts:
+            - name: influxdb-config
+              mountPath: /etc/influxdb2
+            - name: influxdb-data
+              mountPath: /var/lib/influxdb2
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: influxdb
+spec:
+  ports:
+  - port: 8086
+    targetPort: 8086
+  selector:
+    app: influxdb
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: influxdb-config
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: influxdb-config
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: influxdb-data
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: influxdb-data
+  resources:
+    requests:
+      storage: 2Gi
