@@ -13,6 +13,13 @@ spec:
       labels:
         app: influxdb
     spec:
+      volumes:
+      - name: influxdb-config
+        persistentVolumeClaim:
+          claimName: influxdb-config
+      - name: influxdb-data
+        persistentVolumeClaim:
+          claimName: influxdb-data
       containers:
         - image: influxdb:2.7.1
           name: influxdb
