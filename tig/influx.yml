@@ -49,7 +49,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: influxdb-config
+  storageClassName: local-path
   resources:
     requests:
       storage: 1Gi
@@ -61,7 +61,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: influxdb-data
+  storageClassName: local-path
   resources:
     requests:
       storage: 2Gi
