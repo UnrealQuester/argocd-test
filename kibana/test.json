@@ -1,0 +1,4 @@
+{"id": 1, "table": "assets", "name":"firewall1", "support_group": 1}
+{"id": 2, "table": "assets", "name":"firewall2", "support_group": 2}
+{"id": 1, "table": "support", "name":"team1"}
+{"id": 2, "table": "support", "name":"team2"}
