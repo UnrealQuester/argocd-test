@@ -14,4 +14,6 @@ steps:
   inputs:
     action: 'deploy'
     connectionType: 'kubernetesServiceConnection'
+    kubernetesServiceConnection: 'AKS-DEV-myproject-aks1-argocd-1698782422667'
+    namespace: 'argocd'
     manifests: 'argocd-2.8.4.yaml'
